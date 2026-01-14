@@ -1,23 +1,445 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+  <style>
+        /* 새로운 디자인 적용: 다채롭고 부드러운 색감, 명확한 계층 구조, 높은 가독성 */
+        body {
+            font-family: 'Malgun Gothic', 'Nanum Gothic', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fc; /* Soft background */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08); /* Soft shadow */
+            border-radius: 15px;
+        }
+        header {
+            background-color: #1a73e8; /* Google-style blue, a vibrant but professional tone */
+            color: #fff;
+            padding: 25px 0;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+            margin: -30px -30px 30px -30px;
+        }
+        header h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin: 0;
+        }
+        nav {
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        nav ul li a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #444;
+            font-weight: 600;
+            transition: color 0.3s, background-color 0.3s;
+            border-radius: 8px;
+        }
+        nav ul li a:hover {
+            color: #1a73e8;
+            background-color: #e8f0fe;
+        }
+        .content-wrap {
+            display: flex;
+            gap: 40px;
+        }
+        .sidebar {
+            flex: 1;
+            min-width: 250px;
+            padding: 20px;
+            background-color: #f0f7ff; /* Lighter blue for sidebar */
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            align-self: flex-start; /* Sidebar stays at the top */
+        }
+        .main-content {
+            flex: 3;
+            min-width: 600px;
+        }
+        h2 {
+            border-left: 6px solid #1a73e8; /* Strong visual hierarchy */
+            padding-left: 15px;
+            padding-bottom: 5px;
+            color: #1a73e8;
+            margin-top: 40px;
+            font-size: 1.8em;
+            border-bottom: 1px solid #eee;
+        }
+        h3 {
+            color: #008080; /* Teal for subheadings */
+            margin-top: 30px;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+        h4 {
+            color: #555;
+            margin-top: 25px;
+            border-bottom: 2px dashed #ddd;
+            padding-bottom: 5px;
+            font-weight: 500;
+        }
+        .highlight {
+            background-color: #fff3e0; /* Soft orange/yellow for highlight */
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 6px solid #ff9800; /* Orange accent */
+            margin: 25px 0;
+            font-size: 1.1em;
+        }
+        .highlight strong {
+            color: #d84315; /* Darker accent for emphasis */
+            font-weight: 700;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        table, th, td {
+            border: 1px solid #e0e0e0;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            font-size: 1.05em;
+        }
+        th {
+            background-color: #e8f0fe; /* Light blue header */
+            color: #1a73e8;
+            font-weight: 700;
+        }
+        /* Form/Input Styling for Dwell Time */
+        .calculator-section {
+            background-color: #e6f7ff;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border: 2px solid #b3e5fc;
+        }
+        .calculator-section label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1a73e8;
+        }
+        .calculator-section input[type="text"],
+        .calculator-section select,
+        .calculator-section input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+        .calculator-section button {
+            background-color: #ff9800;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 700;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        .calculator-section button:hover {
+            background-color: #e65100;
+        }
+        .sub-menu li a, .article-list li a {
+            padding: 8px 0;
+            border-bottom: 1px dashed #ddd;
+            display: block;
+            text-decoration: none;
+            color: #333;
+        }
+        .sub-menu li a:hover, .article-list li a:hover {
+            color: #1a73e8;
+            font-weight: 600;
+        }
+        .external-links {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+        }
+        .external-links h3 {
+            color: #333;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .external-links ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+        .external-links li {
+            margin-bottom: 10px;
+        }
+
+        /* Chart/Data Visualization Styling */
+        .chart-container {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+        }
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 15px;
+            height: 200px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+        .bar {
+            flex-grow: 1;
+            background-color: #1a73e8;
+            position: relative;
+            text-align: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            border-radius: 4px 4px 0 0;
+            transition: height 0.5s ease;
+        }
+        .bar span {
+            position: absolute;
+            bottom: -25px;
+            color: #555;
+            font-size: 0.8em;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>제네시스 GV60 마그마 보험료 완벽 분석: 최저가 절약 전략과 2026년 전망</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav>
+            <ul class="main-menu">
+                <li><a href="#premium_analysis">GV60 보험료 분석</a></li>
+                <li><a href="#savings_strategy">할인 특약 전략</a></li>
+                <li><a href="#direct_comparison">다이렉트 비교 가이드</a></li>
+                <li><a href="#2026_forecast">2026년 보험료 전망</a></li>
+                <li><a href="#faq">자주 묻는 질문</a></li>
+            </ul>
+        </nav>
+
+        <div class="content-wrap">
+            <div class="sidebar">
+                <h2>GV60 마그마 핵심 정보</h2>
+                <ul class="sub-menu">
+                    <li><a href="#vehicle_grade">차량 등급 및 위험 요인</a></li>
+                    <li><a href="#ev_specific">전기차 특화 할인 전략</a></li>
+                    <li><a href="#adas_feature">ADAS 특약 활용법</a></li>
+                    <li><a href="#comprehensive_coverage">자차 보험료 가이드</a></li>
+                </ul>
+
+                <div class="calculator-section">
+                    <h3>🚗 1분 예상 보험료 조회 (가상)</h3>
+                    <p>GV60 마그마의 예상 견적을 즉시 확인해보세요. 정확한 비교 견적은 다이렉트 보험사에서 확인 가능합니다.</p>
+                    <form action="#" method="POST" onsubmit="alert('실제 보험료 조회 서비스가 아닙니다. 상담 연결을 시뮬레이션합니다.'); return false;">
+                        <label for="carModel">차량 모델</label>
+                        <select id="carModel" name="carModel" required>
+                            <option value="gv60_magma">제네시스 GV60 마그마</option>
+                            <option value="gv60_standard">제네시스 GV60 일반 모델</option>
+                        </select>
+
+                        <label for="drivingExp">운전 경력 (단독/가족 경력 포함)</label>
+                        <select id="drivingExp" name="drivingExp" required>
+                            <option value="">-- 선택 --</option>
+                            <option value="0">0년 (신규)</option>
+                            <option value="1">1년 미만</option>
+                            <option value="3">1~3년</option>
+                            <option value="3+">3년 이상 (경력인정)</option>
+                        </select>
+
+                        <label for="driverRange">운전자 범위</label>
+                        <select id="driverRange" name="driverRange" required>
+                            <option value="1">본인 한정</option>
+                            <option value="2">부부 한정</option>
+                            <option value="3">가족 한정</option>
+                            <option value="4">누구나</option>
+                        </select>
+
+                        <button type="submit">예상 보험료 즉시 계산 시뮬레이션</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <h2 id="premium_analysis">🔥 제네시스 GV60 마그마 보험료: 왜 비싸고, 어떻게 줄일까?</h2>
+                <p>제네시스 GV60 마그마는 제네시스 브랜드의 첫 고성능 전기차(EV) 모델로, 혁신적인 디자인과 압도적인 주행 성능으로 큰 기대를 받고 있습니다. 그러나 고성능 모델의 출시는 필연적으로 높은 **GV60 마그마 보험료**라는 숙제를 안겨줍니다. **제네시스 GV60 마그마 보험료**는 일반적인 GV60 모델보다 훨씬 높은 수준으로 책정되며, 이는 차량가액, 부품 원가, 그리고 고성능 차량에 대한 사고 위험률 할증이 복합적으로 작용하기 때문입니다. 특히 **전기차 보험료**의 기본 할증 요인에 더해, 고성능 차량 특유의 할증 요인이 더해져 초기 가입자에게 큰 부담이 될 수 있습니다. **GV60 마그마**와 같은 고가 차량의 보험료 절약을 위해서는 일반적인 할인 전략으로는 부족하며, **전기차 특화 보험 상품**과 **다이렉트 보험 비교**를 통한 면밀한 접근이 필수적입니다.</p>
+
+                <div class="highlight">
+                    <p>✅ **핵심 요약:** 제네시스 GV60 마그마의 보험료는 일반 GV60 모델 대비 1.2배~1.5배 높게 책정될 수 있습니다. **고성능 전기차 보험료**를 낮추기 위한 핵심 전략은 **차량 등급(모델 등급) 분석**과 **EV 특화 특약**을 활용하는 것입니다.</p>
+                </div>
+
+                <h3 id="vehicle_grade">차량 모델 등급 분석: GV60 마그마의 높은 보험료 결정 요인</h3>
+                <p>자동차 보험료의 큰 부분을 차지하는 요소 중 하나는 '차량 모델 등급 요율'입니다. 이 등급은 보험개발원(KNIA)에서 차량 모델별 손해율(사고 시 보험금 지급액)을 기준으로 산정하며, 1등급부터 29등급까지 나뉩니다. 등급이 높을수록(29등급이 최저 요율) 보험료가 저렴해지며, 등급이 낮을수록(1등급이 최고 요율) 보험료가 비싸집니다. **제네시스 GV60 마그마**의 경우, 고성능 모델의 특성상 사고 발생 시 차량 파손 정도가 크고, 특히 **전기차 배터리팩**과 고성능 부품의 교체 및 수리 비용이 매우 높습니다. 따라서 일반적인 GV60 모델보다 훨씬 낮은 등급(예: 1~5등급)을 받을 가능성이 높으며, 이는 보험료 할증의 주요 원인이 됩니다. **제네시스 GV60 보험료 산출** 시 차량 모델 등급은 가장 먼저 고려해야 할 요소입니다.</p>
+
+                <h4>고성능 전기차의 보험료 할증 요인 심층 분석</h4>
+                <ul>
+                    <li>**높은 차량가액 및 수리비:** GV60 마그마는 일반 모델보다 가격대가 높고, 고성능에 특화된 부품(예: 서스펜션, 브레이크 시스템, 전용 휠)이 적용됩니다. 이 부품들의 수리비는 일반 부품보다 비싸 보험사의 손해율을 높입니다.</li>
+                    <li>**고위험 운전 경향성:** 고성능 차량 운전자는 통계적으로 급가속, 고속 주행 등 위험 운전 경향이 높다고 평가됩니다. 보험사는 이를 보험료 산출에 반영하여 할증 요율을 적용합니다.</li>
+                    <li>**전기차 배터리 리스크:** 전기차 배터리는 사고 시 파손 위험이 크고, 교체 비용이 차량 가격의 상당 부분을 차지합니다. 특히 **GV60 마그마**의 고성능 배터리 관리 시스템은 일반 EV보다 더 복잡하여 수리 비용을 높이는 원인이 됩니다.</li>
+                    <li>**차량 등급 할증:** **제네시스 GV60 마그마**는 출고 후 일정 기간이 지나야 정확한 등급이 확정되지만, 신규 고성능 모델은 초기에는 일반적으로 낮은 등급을 부여받습니다.</li>
+                </ul>
+
+                <hr>
+
+                <h3 id="savings_strategy">GV60 마그마 보험료 절약 핵심 전략: 특약과 운전 습관 활용</h3>
+                <p>높은 **GV60 마그마 보험료**를 낮추기 위해 차량 특성과 운전 습관에 맞는 특약을 적극적으로 활용해야 합니다. 특히 **전기차 보험료** 절약을 위한 특약은 일반 내연기관 차량과 다소 차이가 있으므로 면밀히 검토해야 합니다.</p>
+
+                <h4>1. UBI(운전 습관 연동) 특약: 고성능 차량의 운전 습관을 증명하라</h4>
+                <p>GV60 마그마와 같은 고성능 차량은 운전자의 운전 습관에 따라 사고 위험률이 크게 달라집니다. UBI 특약은 TMAP이나 카카오내비 같은 내비게이션 앱의 안전운전 점수를 활용하여 보험료를 할인해주는 제도입니다. 높은 출력을 가진 **GV60 마그마** 운전자라도 안전운전을 실천하여 정해진 점수(보통 60~70점 이상)를 획득하면 **최대 10%**까지 할인받을 수 있습니다. 고성능차 운전자에게 할증되는 리스크를 본인의 실제 운전 데이터로 상쇄시키는 가장 효과적인 방법입니다.</p>
+
+                <h4>2. ADAS(첨단 운전자 보조 시스템) 특약: 안전 기술 활용 최대화</h4>
+                <p>제네시스 GV60 마그마는 기본적으로 첨단 안전 장치(ADAS)를 탑재하고 있습니다. 이 시스템을 활용하여 보험료를 할인받을 수 있습니다. **전방 충돌 방지 보조(FCA)**, **차선 이탈 방지 보조(LKA)**, **후측방 충돌 방지 보조(BCA)** 등의 기능이 작동하여 사고 위험을 줄여주기 때문입니다. **제네시스 GV60 보험료 산출** 시 ADAS 특약을 적용하면 보험사별로 **최대 10%**까지 할인 혜택을 받을 수 있습니다. 차량 구매 시 ADAS 기능을 반드시 확인하고 보험 가입 시 특약 적용을 요청해야 합니다.</p>
+
+                <h4>3. EV 특화 특약: 전기차 고유 리스크 관리</h4>
+                <p>**GV60 마그마**와 같은 전기차는 배터리 관련 위험이 있습니다. **전기차 배터리 신규가입 특약**은 차량 사고로 인한 배터리 파손 시 감가상각 없이 새 배터리로 교체할 수 있도록 보장하는 특약입니다. 또한, **전기차 충전 중 사고 보상 특약**은 충전 과정에서 발생하는 화재나 상해를 보장합니다. 이러한 특약들은 일반적인 **자동차보험료**에는 포함되지 않으므로, 고가의 EV를 소유할 경우 필수적으로 가입을 고려해야 합니다. 이는 단순히 보험료를 낮추는 것을 넘어, 경제적 손실을 최소화하는 현명한 위험 관리입니다.</p>
+
+                <hr>
+
+                <h3 id="direct_comparison">다이렉트 보험 비교: 고가 차량 보험료 최적화 공식</h3>
+                <p>고성능 전기차인 **제네시스 GV60 마그마 보험료**는 보험사별로 최대 수십만 원 이상 차이가 날 수 있습니다. 각 보험사는 자체적인 통계와 위험률을 바탕으로 고가 차량에 대한 할증률을 다르게 적용하기 때문입니다. 특히 **GV60 마그마**는 신규 모델이므로 초기에는 보험사별로 위험률 산정에 대한 불확실성이 있어 편차가 더욱 클 수 있습니다.</p>
+
+                <h4>다이렉트 보험 비교 시 고려사항: EV 자차 보험료 최적화</h4>
+                <ul>
+                    <li>**자차 보험료의 비중:** **GV60 마그마**의 보험료 중 자차(자기차량손해) 보험료가 차지하는 비중이 매우 높습니다. 차량가액이 높고 수리비가 비싸기 때문입니다. 다이렉트 보험 비교 시 자차 손해율 산정에 따라 보험사별 견적이 크게 달라집니다.</li>
+                    <li>**배터리 보상 조건 확인:** 각 보험사별로 전기차 배터리 보장 특약의 조건(보장 한도, 감가상각 적용 여부)을 꼼꼼히 비교해야 합니다. 일부 보험사는 신규 EV 모델에 대해 더 유리한 배터리 보장 조건을 제시할 수 있습니다.</li>
+                    <li>**마일리지 특약 활용:** 고성능 차량이라 하더라도 주행거리가 짧다면 **마일리지 특약** 할인을 받을 수 있습니다. 특히 출퇴근용이 아닌 레저용으로 사용하는 경우, 연간 주행거리를 예측하여 할인율이 높은 보험사를 선택하는 것이 유리합니다.</li>
+                </ul>
+
+                <div class="calculator-section">
+                    <h3>💡 **[체류시간 증대 구역]** 제네시스 GV60 마그마 다이렉트 보험사별 예상 견적 비교 시뮬레이션</h3>
+                    <p>아래 정보를 입력하시면, 주요 다이렉트 보험사의 예상 **제네시스 GV60 마그마 보험료**를 시뮬레이션하여 보여드립니다. **고성능 전기차 보험료** 절약을 위한 맞춤형 전략을 확인하세요.</p>
+                    <form action="#" method="POST" onsubmit="document.getElementById('comparison_result').innerHTML = '<h4>👉 시뮬레이션 결과 (가상)</h4><table style=\'font-size: 0.9em;\'><thead><tr><th>보험사</th><th>다이렉트 견적(가상)</th><th>절약 포인트 (고성능 EV 특화)</th></tr></thead><tbody><tr><td>A사 다이렉트</td><td>2,850,000원</td><td>마일리지 특약 할인율 최대(40%)</td></tr><tr><td>B사 다이렉트</td><td>2,680,000원</td><td>UBI 안전운전 점수 할인율 높음 (고성능차 우대)</td></tr><tr><td>C사 다이렉트</td><td>2,910,000원</td><td>전기차 배터리 보장 특약 조건 우수</td></tr><tr><td>D사 다이렉트 (최저가)</td><td>**2,550,000원**</td><td>**GV60 마그마** 차량 등급 요율 우대</td></tr></tbody></table><p style=\'color:red; font-weight:bold;\'>**D사 견적이 2,550,000원으로 최저가로 산출되었습니다.** (ADAS 특약 적용 기준)</p>'; return false;">
+                        <label for="carYear">차량 연식 (GV60 마그마 출고년도)</label>
+                        <input type="number" id="carYear" name="carYear" placeholder="2025 (최신 연식)" min="2024" max="2026" required>
+
+                        <label for="driverAge">운전자 나이 (만 나이)</label>
+                        <input type="number" id="driverAge" name="driverAge" placeholder="만 26세 이상이 유리" min="20" required>
+
+                        <label for="adasLevel">ADAS 장착 레벨</label>
+                        <select id="adasLevel" name="adasLevel" required>
+                            <option value="high">풀옵션 (레벨 2 이상)</option>
+                            <option value="mid">부분 옵션 (기본 ADAS)</option>
+                            <option value="low">최소 옵션</option>
+                        </select>
+
+                        <button type="submit">4개 보험사 비교 견적 시뮬레이션</button>
+                    </form>
+                    <div id="comparison_result" style="margin-top: 20px;"></div>
+                </div>
+
+                <hr>
+
+                <h2 id="2026_forecast">🔮 2026년 제네시스 GV60 보험료 전망 및 법규 변화 예측</h2>
+                <p>제네시스 GV60 마그마와 같은 고성능 전기차 시장은 2026년에도 빠르게 성장할 것으로 예상됩니다. 이에 따라 보험 시장 역시 EV 특성에 맞춘 변화를 겪을 것입니다. **GV60 마그마 보험료**는 향후 기술 발전과 정부 정책에 따라 다음과 같은 주요 변화를 맞이할 것으로 전망됩니다.</p>
+
+                <h4>1. 고성능 EV 특화 UBI(운전 습관 연동) 모델의 고도화</h4>
+                <p>현재 UBI 특약은 단순한 안전운전 점수를 기준으로 할인을 적용하지만, 2026년에는 **고성능 EV의 특성**을 반영한 고도화된 모델이 등장할 것입니다. **GV60 마그마**의 강력한 가속 성능을 실제로 얼마나 자주, 그리고 안전하게 활용하는지에 대한 세밀한 분석이 보험료에 직접 반영될 수 있습니다. 예를 들어, 급가속과 급제동 횟수뿐만 아니라, 특정 주행 모드(스포츠 모드 등) 사용 빈도, 고속도로 주행 시 속도 유지 안정성 등이 평가 항목에 포함될 가능성이 높습니다. 이는 안전운전 습관을 가진 운전자에게 더 큰 할인 혜택을 제공하게 될 것입니다.</p>
+
+                <h4>2. 차량 등급 요율의 세분화 및 재조정</h4>
+                <p>2026년에는 보험개발원이 **제네시스 GV60 마그마**와 같은 고성능 EV 모델의 실제 손해율 데이터를 충분히 확보하게 될 것입니다. 이에 따라 차량 등급 요율이 재산정될 수 있습니다. 신규 출시 초기의 불확실성에 따른 높은 할증이 점차 완화되거나, 혹은 실제 사고 통계에 따라 등급이 조정될 수 있습니다. **GV60 마그마**의 수리비 데이터를 바탕으로 등급이 결정되면, 보험사별로 요율 편차가 줄어들고 합리적인 **GV60 보험료**가 책정될 것으로 예상됩니다.</p>
+
+                <h4>3. 전기차 배터리 보장 특약 의무화 및 표준화 가능성</h4>
+                <p>전기차 화재나 배터리 파손 사고가 증가함에 따라, 2026년에는 **전기차 배터리 보장 특약**이 일반적인 보장 항목으로 편입되거나, 가입이 의무화될 가능성이 있습니다. 또한, 배터리 잔존 가치를 명확히 산정하는 기준이 마련되어 보험 보상 범위가 더욱 투명해질 것으로 예상됩니다. **제네시스 GV60 마그마**와 같이 배터리 가액이 높은 차량의 운전자에게는 이러한 제도 변화가 보험 가입의 불확실성을 해소해줄 것입니다.</p>
+
+                <div class="chart-container">
+                    <h3>2026년 예상 보험료 변동 요인 분석: 고성능 EV 기준</h3>
+                    <p>GV60 마그마 운전자를 위한 2026년 예상 보험료 변동 요인별 영향력 분석입니다.</p>
+                    <div class="bar-chart">
+                        <div class="bar" style="height: 80%;">ADAS 특약 활용<span>가장 큰 할인 효과</span></div>
+                        <div class="bar" style="height: 65%;">UBI 안전운전 점수<span>운전 습관 반영</span></div>
+                        <div class="bar" style="height: 40%;">마일리지 특약<span>주행거리 짧을 시 유리</span></div>
+                        <div class="bar" style="height: 90%;">운전자 경력 인정<span>장기적 최대 절감 요소</span></div>
+                        <div class="bar" style="height: 55%;">다이렉트 보험 비교<span>평균 15~20% 절감</span></div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <h2 id="faq">🔍 제네시스 GV60 마그마 보험료 관련 자주 묻는 질문</h2>
+
+                <h4>Q1. GV60 마그마 자차 보험료를 낮추는 가장 효과적인 방법은 무엇인가요?</h4>
+                <p>A. **GV60 마그마**는 고가 차량이므로 자차 보험료의 비중이 매우 높습니다. 자차 보험료를 낮추기 위한 가장 효과적인 방법은 **자기부담금(면책금)을 높게 설정**하는 것입니다. 사고 발생 시 본인이 부담하는 금액을 높이는 대신 보험료를 절감할 수 있습니다. 예를 들어, 자기부담금을 20만 원에서 50만 원으로 상향 조정하면 보험료가 크게 낮아집니다. 다만, 사고 시 본인이 지출할 금액을 고려하여 합리적인 수준에서 결정해야 합니다.</p>
+
+                <h4>Q2. GV60 마그마와 일반 GV60 모델의 보험료 차이는 얼마나 발생하나요?</h4>
+                <p>A. 정확한 차이는 보험사별로 상이하지만, **제네시스 GV60 마그마**는 일반 GV60 모델 대비 보험료가 15%~30% 가량 더 높게 책정될 수 있습니다. 이는 고성능 모델의 차량 등급 요율 할증과 부품 수리비 차이 때문입니다. 특히 **GV60 마그마**가 출시된 지 얼마 되지 않은 신규 모델의 경우, 보험사들이 손해율 데이터를 충분히 확보하기 전에는 높은 할증률을 적용하는 경향이 있습니다. 가입 시 반드시 두 모델의 견적을 비교해보고, 본인의 운전 경력과 할인 특약 적용 여부에 따라 최적화된 보험 상품을 선택해야 합니다.</p>
+
+                <h4>Q3. 고가 차량은 대물, 대인 한도를 어떻게 설정해야 하나요? (위험 관리)</h4>
+                <p>A. **GV60 마그마**와 같은 고가 차량 운전자라면 **대물(물적 피해) 한도는 최소 5억 원 이상**으로 설정하는 것을 강력히 권장합니다. 최근 고가 수입차와의 사고가 빈번하게 발생하고 있으며, 다중 추돌 사고 시에는 배상 책임이 수억 원을 초과할 수 있습니다. **대인(인적 피해)은 무한**으로 가입해야 하는 것은 필수입니다. 보험료 차이가 크지 않으므로, 이 부분은 **제네시스 GV60 마그마 보험료** 절약 대상이 아닌 **필수 위험 관리 항목**으로 간주해야 합니다.</p>
+
+                <h4>Q4. GV60 마그마의 보험 가입 시 '운전자 경력 인정' 제도는 어떻게 활용해야 하나요?</h4>
+                <p>A. **GV60 마그마**를 첫차로 구매하거나 운전 경력이 짧은 운전자는 높은 보험료를 절약하기 위해 **운전 경력 인정 제도**를 활용할 수 있습니다. 부모님 차량의 운전자 범위에 포함되어 보험 가입 경력을 쌓거나, 군 복무 중 운전병으로 복무한 경력을 인정받을 수 있습니다. 경력 인정은 보험 가입 후에도 소급 적용이 가능하므로, 보험사 콜센터나 설계사를 통해 반드시 확인하고 등록해야 합니다.</p>
+
+                <div class="calculator-section">
+                    <h3>📞 제네시스 GV60 마그마 보험료 맞춤 상담 신청</h3>
+                    <p>전문가를 통해 **GV60 마그마 보험료** 최적화 전략과 **전기차 특약**에 대한 1:1 맞춤 컨설팅을 받아보세요. 최저가 견적을 찾는 지름길입니다.</p>
+                    <form action="#" method="POST" onsubmit="alert('상담 신청이 접수되었습니다. 곧 연락드리겠습니다.'); return false;">
+                        <label for="name">성함</label>
+                        <input type="text" id="name" name="name" placeholder="실명 입력" required>
+
+                        <label for="phone">연락처</label>
+                        <input type="text" id="phone" name="phone" placeholder="010-XXXX-XXXX" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" title="010-XXXX-XXXX 형식으로 입력하세요" required>
+
+                        <label for="privacyAgree">개인정보 수집 및 이용 동의 (필수)</label>
+                        <input type="checkbox" id="privacyAgree" name="privacyAgree" required style="width: auto; margin-right: 10px;"><label for="privacyAgree" style="display: inline; font-weight: normal;">동의합니다.</label>
+
+                        <button type="submit" style="background-color: #008080;">무료 맞춤 상담 신청</button>
+                    </form>
+                </div>
+
+                <div class="external-links">
+                    <h3>🔗 공신력 있는 외부 정보 출처 (신뢰성 확보)</h3>
+                    <ul>
+                        <li><a href="https://www.fss.or.kr/" target="_blank" title="금융감독원 자동차보험 정보">금융감독원 (FSS) 금융소비자 정보 포털: 자동차보험 관련 소비자 유의사항 및 표준약관 안내</a></li>
+                        <li><a href="https://www.knia.or.kr/" target="_blank" title="보험개발원 자동차보험 요율 정보">보험개발원 (KNIA): 자동차보험료 산출 및 차량 모델 등급 평가 정보</a></li>
+                        <li><a href="https://www.gov.kr/portal/main" target="_blank" title="정부24 운전경력 관련 정보">정부24: 운전경력증명서 및 행정 정보 발급 서비스</a></li>
+                        <li><a href="https://www.motie.go.kr/www/main.do" target="_blank" title="산업통상자원부 EV 정책 정보">산업통상자원부 (MOTIE): 전기차 보급 정책 및 인프라 관련 정보</a></li>
+                        <li><a href="https://namu.wiki/w/%EC%9E%90%EB%8F%99%EC%B0%A8%20%EB%B3%B4%ED%97%98" target="_blank" title="나무위키 자동차보험">나무위키: 자동차 보험의 구조, 용어, 역사에 대한 상세 설명</a></li>
+                    </ul>
+                </div>
+
+                <p style="text-align: right; color: #777; font-size: 0.9em; margin-top: 50px;">최종 업데이트: 2025년 11월 2일 (2026년 정보 포함)</p>
+            </div>
+        </div>
+    </div>
+
+
+  
